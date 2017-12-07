@@ -1,9 +1,12 @@
 const router = require('koa-router')()
+import DB from "../service/db"
+import { Car } from "../service/entity/Car"
 
 router.get('/', async (ctx, next) => {
-  await ctx.render('index', {
-    title: 'Hello Koa 2!'
+  let a = await DB(async cn => {
+    return await cn.manager.find(Car);
   })
+  ctx.body = a;
 })
 
 router.get('/string', async (ctx, next) => {
