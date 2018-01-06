@@ -1,0 +1,18 @@
+{
+  "type": "mysql",
+  "host": "localhost",
+  "port": 3306,
+  "username": "kevin",
+  "password": "123456",
+  "database": "carhome",
+  "synchronize": true,
+  "logging": false,
+  "entities": ["tsapp/service/entity/**/*.ts"],
+  "migrations": ["tsapp/service/migration/**/*.ts"],
+  "subscribers": ["tsapp/service/subscriber/**/*.ts"],
+  "cli": {
+    "entitiesDir": "tsapp/service/entity",
+    "migrationsDir": "tsapp/service/migration",
+    "subscribersDir": "tsapp/service/subscriber"
+  }
+}
