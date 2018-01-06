@@ -1,23 +1,20 @@
-import "reflect-metadata";
-import { createConnection } from "typeorm";
+import { getManager, Repository } from "typeorm";
 import { Car } from "./entity/Car";
+import { Type } from "./entity/Type";
+import { Brand } from "./entity/Brand";
 
-let DB = async function (cb) {
-  let connection = await createConnection({
-    type: "mysql",
-    host: "localhost",
-    port: 3306,
-    username: "kevin",
-    password: "123456",
-    database: "carhome",
-    entities: [
-      Car
-    ],
-    synchronize: true,
-    logging: false
-  });
+let map = {
+  car: Car,
+  type: Type,
+  brand: Brand
+}
 
-  return await cb(connection)
+let DB = function (name: string): Repository<any> {
+  if (!map[name]) {
+    throw Error('数据库调用错误')
+  }
+  let repository = getManager().getRepository(map[name]);
+  return repository;
 }
 
 export default DB;

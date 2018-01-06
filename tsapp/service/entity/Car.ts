@@ -4,20 +4,17 @@ import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
 export class Car {
   @PrimaryGeneratedColumn() autokid: number;
 
-  name: string;
-  /*
-    @Column() brand: number;
-  
-    @Column() type: number;
-  
-    @Column({
-      length: 100
-    })
-    size: string;
-  
-    @Column() price: number;
-  
-    @Column() price_hight: number;
-  
-    @Column() is_sale: boolean;*/
+  @Column({ type: 'varchar', length: 100, default: '' }) name: string;
+
+  @Column({ type: 'int', default: 0 }) brand: number;
+
+  @Column({ type: 'int', default: 0 }) type: number;
+
+  @Column({ type: 'varchar', length: 100, default: '' }) size: string;
+
+  @Column({ type: 'int', default: 0 }) price: number;
+
+  @Column({ type: 'int', default: 0 }) price_hight: number;
+
+  @Column({ type: 'tinyint', default: 1 }) is_sale: boolean;
 }
